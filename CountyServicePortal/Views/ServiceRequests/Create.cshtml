@@ -1,0 +1,46 @@
+﻿@model CountyServicePortal.Models.ServiceRequest
+
+<h2>Submit Service Request</h2>
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description"
+                  class="form-control"></textarea>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Category"></label>
+
+        <select asp-for="Category"
+                class="form-control">
+
+            <option value="">Select Category</option>
+
+            <option>Pothole</option>
+            <option>Graffiti</option>
+            <option>Streetlight</option>
+            <option>Illegal Dumping</option>
+            <option>Park Maintenance</option>
+
+        </select>
+    </div>
+
+    <br />
+
+    <button type="submit"
+            class="btn btn-primary">
+        Submit Request
+    </button>
+
+</form>
