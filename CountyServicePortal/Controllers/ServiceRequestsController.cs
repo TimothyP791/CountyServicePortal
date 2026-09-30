@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CountyServicePortal.Data;
 using CountyServicePortal.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 
@@ -15,13 +16,21 @@ namespace CountyServicePortal.Controllers
             _context = context;
         }
 
-        public IActionResult Create()
+        public IActionResult Create() // GET: ServiceRequests/Create
         {
             return View();
         }
 
+        public IActionResult Index() //
+        {
+            var requests = _context.ServiceRequests
+                                    .OrderByDescending(r => r.DateSubmitted)
+                                    .ToList();
+            return View(requests);
+        }
+
         [HttpPost]
-        public IActionResult Create(ServiceRequest request)
+        public IActionResult Create(ServiceRequest request) //creates a new service request and saves it to the database
         {
             if (ModelState.IsValid)
             {
@@ -36,7 +45,7 @@ namespace CountyServicePortal.Controllers
 
             return View(request);
         }
-        public IActionResult Success()
+        public IActionResult Success() // Success page after submitting a service request
         {
             return View();
         }
