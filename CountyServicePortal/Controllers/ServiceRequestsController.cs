@@ -21,12 +21,23 @@ namespace CountyServicePortal.Controllers
             return View();
         }
 
-        public IActionResult Index() //
+        public IActionResult Index() 
         {
             var requests = _context.ServiceRequests
                                     .OrderByDescending(r => r.DateSubmitted)
                                     .ToList();
             return View(requests);
+        }
+
+        public IActionResult Details(int id) //creates a details view for a specific service request based on its ID
+        {
+            var request = _context.ServiceRequests
+                                    .FirstOrDefault(r => r.RequestId == id);
+            if (request == null)
+            {
+                return NotFound();
+            }
+            return View(request);
         }
 
         [HttpPost]
