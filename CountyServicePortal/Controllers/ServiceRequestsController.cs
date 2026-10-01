@@ -60,5 +60,35 @@ namespace CountyServicePortal.Controllers
         {
             return View();
         }
+
+        public IActionResult UpdateStatus(int id)
+        {
+            var request = _context.ServiceRequests
+                                    .FirstOrDefault(r => r.RequestId == id);
+            if (request == null)
+            {
+                return NotFound();
+            }
+
+            return View(request);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateStatus(int id, string status)
+        {
+            var request = _context.ServiceRequests
+                                  .FirstOrDefault(r => r.RequestId == id);
+
+            if (request == null)
+            {
+                return NotFound();
+            }
+
+            request.Status = status;
+
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Details), new { id });
+        }
     }
 }

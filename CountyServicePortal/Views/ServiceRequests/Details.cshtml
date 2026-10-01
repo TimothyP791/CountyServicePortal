@@ -25,6 +25,9 @@
         <p>
             <strong>Status:</strong>
             @Model.Status
+            <a asp-action="UpdateStatus" asp-route-id="@Model.RequestId" class="btn btn-primary">
+                Update Status
+            </a>
         </p>
 
         <p>

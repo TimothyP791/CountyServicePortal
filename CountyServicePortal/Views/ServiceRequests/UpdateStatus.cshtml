@@ -1,0 +1,25 @@
+﻿@model CountyServicePortal.Models.ServiceRequest
+
+<form asp-action="UpdateStatus" method="post">
+
+    <input type="hidden" asp-for="RequestId" />
+
+    <div>
+        <label asp-for="Status"></label>
+
+        <select asp-for="Status" class="form-control">
+            <option>Submitted</option>
+            <option>Under Review</option>
+            <option>Assigned</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+        </select>
+
+        <br />
+
+        <button type="submit" class="btn btn-primary">
+            Update Status
+        </button>
+    </div>
+
+</form>

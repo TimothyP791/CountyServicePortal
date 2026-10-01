@@ -19,7 +19,7 @@ namespace CountyServicePortal.Models
         [Required]
         public string Category { get; set; } = string.Empty;
 
-        public string Status { get; set; } = "Submitted"; // Default status for new service requests 
+        public string Status { get; set; } = string.Empty; // Default status for new service requests 
 
         public DateTime DateSubmitted { get; set; }
     }
