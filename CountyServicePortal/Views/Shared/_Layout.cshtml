@@ -24,6 +24,14 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
+                            <!-- Added navigation link for creating a new service request -->
+                            <a class="nav-link text-dark"  
+                               asp-controller="ServiceRequests"
+                               asp-action="Create">
+                                Create Request
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark"
                                asp-controller="ServiceRequests"
                                asp-action="Index">
