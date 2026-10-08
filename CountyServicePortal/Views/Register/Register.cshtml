@@ -1,0 +1,31 @@
+﻿
+@model CountyServicePortal.Models.Civilian
+    <!-- create layout for registration page including button to select user type (e.g., User or Employee) -->
+    <h2>Register an Account</h2>
+
+<form asp-action="Register" method="post">
+
+     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div>
+        <label asp-for="Username"></label>
+        <input asp-for="Username" class="form-control" />
+         <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <button type="submit"
+            class="btn btn-primary">
+        Register Account
+    </button>
+
+</form>

@@ -2,7 +2,7 @@
 
 namespace CountyServicePortal.Models
 {
-    public class Users
+    public class Civilian
     {
         [Key] // Primary key for the Users entity
         public int UserId { get; set; }
