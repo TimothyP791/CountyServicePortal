@@ -45,6 +45,29 @@ namespace CountyServicePortal.Migrations
                     b.ToTable("Civilians");
                 });
 
+            modelBuilder.Entity("CountyServicePortal.Models.Employees", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("EmployeeId");
+
+                    b.ToTable("Employees");
+                });
+
             modelBuilder.Entity("CountyServicePortal.Models.ServiceRequest", b =>
                 {
                     b.Property<int>("RequestId")
