@@ -60,6 +60,18 @@ namespace CountyServicePortal.Controllers
 
             return View();
         }
+
+        public IActionResult Login(string username, string password) // Action to choose to login in or register a new account
+        {
+            var civilian = _context.Civilians.FirstOrDefault(u => u.Username == username);
+            // Check if the username exists and if the password matches
+            if (civilian == null || civilian.Password != password)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid username or password.");
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult SuccessReg() // Success page after registering a new user
         {
             return View();

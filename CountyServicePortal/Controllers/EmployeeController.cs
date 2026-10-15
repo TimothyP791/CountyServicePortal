@@ -60,6 +60,18 @@ namespace CountyServicePortal.Controllers
 
             return View();
         }
+
+        public IActionResult EmployeeLogin(string username, string password) // GET: Employee/Login
+        {
+            var employee = _context.Employees.FirstOrDefault(u => u.Username == username);
+            // Check if the username exists and if the password matches
+            if (employee == null || employee.Password != password)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid username or password.");
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult SuccessCreate() // Success page after creating a new employee
         {
             return View();

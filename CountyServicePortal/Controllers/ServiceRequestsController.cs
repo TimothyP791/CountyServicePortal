@@ -15,7 +15,8 @@ namespace CountyServicePortal.Controllers
         {
             _context = context;
         }
-
+        // ADD Restrictions to creating service requests to only logged in users
+        // Add restrictions to updating service requests to only logged in employees
         public IActionResult Create() // GET: ServiceRequests/Create
         {
             return View();
@@ -43,6 +44,14 @@ namespace CountyServicePortal.Controllers
         [HttpPost]
         public IActionResult Create(ServiceRequest request) //creates a new service request and saves it to the database
         {
+           var user = _context.Civilians.FirstOrDefault(u => u.Username == User.Identity.Name);
+
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "User is not logged in or not found."); // User is not logged in or not found
+                return View(request);
+            }
+
             if (ModelState.IsValid)
             {
                 request.DateSubmitted = DateTime.Now;
