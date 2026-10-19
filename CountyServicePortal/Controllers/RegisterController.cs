@@ -61,7 +61,14 @@ namespace CountyServicePortal.Controllers
             return View();
         }
 
-        public IActionResult Login(string username, string password) // Action to choose to login in or register a new account
+        [HttpGet]
+        public IActionResult Login() // GET: Register/Login
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string username, string password) // POST: Register/Login
         {
             var civilian = _context.Civilians.FirstOrDefault(u => u.Username == username);
             // Check if the username exists and if the password matches

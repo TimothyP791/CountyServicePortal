@@ -2,6 +2,7 @@
 using CountyServicePortal.Data;
 using CountyServicePortal.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 
 namespace CountyServicePortal.Controllers
@@ -61,11 +62,18 @@ namespace CountyServicePortal.Controllers
             return View();
         }
 
-        public IActionResult EmployeeLogin(string username, string password) // GET: Employee/Login
+        [HttpGet]
+        public IActionResult EmployeeLogin() // GET: Employee/Login
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EmployeeLogin(string username, string password) // POST: Employee/Login
         {
             var employee = _context.Employees.FirstOrDefault(u => u.Username == username);
             // Check if the username exists and if the password matches
-            if (employee == null || employee.Password != password)
+            if (employee == null ||employee.Password != password)
             {
                 ModelState.AddModelError(string.Empty, "Invalid username or password.");
                 return View();
