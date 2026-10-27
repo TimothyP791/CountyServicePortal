@@ -2,6 +2,7 @@
 using CountyServicePortal.Data;
 using CountyServicePortal.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 
 namespace CountyServicePortal.Controllers
@@ -77,6 +78,9 @@ namespace CountyServicePortal.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid username or password.");
                 return View();
             }
+
+            HttpContext.Session.SetString("isLoggedIn", "true");
+
             return RedirectToAction("Index", "Home");
         }
         public IActionResult SuccessReg() // Success page after registering a new user
