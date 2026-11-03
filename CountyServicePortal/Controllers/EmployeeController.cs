@@ -87,6 +87,13 @@ namespace CountyServicePortal.Controllers
         {
             return View();
         }
+        // Add new action for account information page
+        // Create restrictions for employee only accesss
+        public IActionResult Logout() // GET: Register/Logout
+        {
+            HttpContext.Session.Remove("isLoggedIn");
+            return RedirectToAction("Index", "Home");
+        }
 
     }
 }
