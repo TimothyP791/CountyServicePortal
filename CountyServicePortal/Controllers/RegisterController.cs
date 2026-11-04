@@ -78,8 +78,12 @@ namespace CountyServicePortal.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid username or password.");
                 return View();
             }
-
+            
+            HttpContext.Session.SetString("isEmployee", "false");
             HttpContext.Session.SetString("isLoggedIn", "true");
+            HttpContext.Session.SetString("isCivilian", "true");
+
+
 
             return RedirectToAction("Index", "Home");
         }

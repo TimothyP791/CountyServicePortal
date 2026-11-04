@@ -79,7 +79,9 @@ namespace CountyServicePortal.Controllers
                 return View();
             }
 
+            HttpContext.Session.SetString("isCivilian", "false");
             HttpContext.Session.SetString("isLoggedIn", "true");
+            HttpContext.Session.SetString("isEmployee", "true");
 
             return RedirectToAction("Index", "Home");
         }

@@ -39,14 +39,19 @@
                                 Employees
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <!-- Added navigation link for creating a new service request -->
-                            <a class="nav-link text-dark"  
-                               asp-controller="ServiceRequests"
-                               asp-action="Create">
-                                Create Request
-                            </a>
-                        </li>
+
+                        @if (Context.Session.GetString("isLoggedIn") == "true" && Context.Session.GetString("isCivilian") == "true")
+                            {
+                            <li class="nav-item">
+                                <!-- Added navigation link for creating a new service request -->
+                                <a class="nav-link text-dark"
+                                   asp-controller="ServiceRequests"
+                                   asp-action="Create">
+                                    Create Request
+                                </a>
+                            </li>
+                            }
+                            
                         <li class="nav-item">
                             <a class="nav-link text-dark"
                                asp-controller="ServiceRequests"
