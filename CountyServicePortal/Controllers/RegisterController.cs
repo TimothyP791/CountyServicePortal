@@ -55,9 +55,12 @@ namespace CountyServicePortal.Controllers
             {
                 _context.Civilians.Add(new Civilian { Username = username, Password = password });
                 _context.SaveChanges();
+                civilian.CreatedAt = DateTime.Now;
+                civilian.RequestsMade = 0;
 
                 return RedirectToAction(nameof(SuccessReg));
             }
+            
 
             return View();
         }
@@ -78,7 +81,9 @@ namespace CountyServicePortal.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid username or password.");
                 return View();
             }
-            
+
+            HttpContext.Session.SetString("username", civilian.Username);
+            HttpContext.Session.SetString("userId", civilian.UserId.ToString());
             HttpContext.Session.SetString("isEmployee", "false");
             HttpContext.Session.SetString("isLoggedIn", "true");
             HttpContext.Session.SetString("isCivilian", "true");
@@ -92,6 +97,7 @@ namespace CountyServicePortal.Controllers
             return View();
         }
         // Add new action for account information page
+
         // Create restrictions for civilian only accesss
         public IActionResult Logout() // GET: Register/Logout
         {

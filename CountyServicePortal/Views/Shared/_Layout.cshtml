@@ -66,16 +66,48 @@
                     
                     @if (Context.Session.GetString("isLoggedIn") == "true")
                     {
-                        <!-- Load Font Awsome library and insert user icon -->
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-                    <i id="userIcon"class="fa-solid fa-user"></i>
+                        <!-- Font Awesome library -->
+                        <link rel="stylesheet"
+                              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
                         <ul class="navbar-nav">
-                            <!-- Added navigation link for logging out (Update this to be a dropdown menu) -->
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Register" asp-action="Logout">Logout</a>
+                            <li class="nav-item dropdown">
+
+                                <!-- Username dropdown toggle -->
+                                <a class="nav-link dropdown-toggle text-dark"
+                                   href="#"
+                                   id="userDropdown"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+
+                                    <i class="fa-solid fa-user"></i>
+                                    @Context.Session.GetString("username")
+                                </a>
+
+                                <!-- Dropdown options -->
+                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="@Url.Action("AccountDetails", "Home")">
+                                            Account Details
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="Register"
+                                           asp-action="Logout">
+                                            Logout
+                                        </a>
+                                    </li>
+
+                                </ul>
                             </li>
-                        </ul> 
+                        </ul>
                     }
+
                     
                 </div>
             </div>

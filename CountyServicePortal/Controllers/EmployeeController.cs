@@ -54,6 +54,8 @@ namespace CountyServicePortal.Controllers
             if (ModelState.IsValid)
             {
                 _context.Employees.Add(new Employees { Username = username, Password = password });
+                employee.CreatedAt = DateTime.Now;
+                employee.RequestsAltered = 0;
                 _context.SaveChanges();
 
                 return RedirectToAction(nameof(SuccessCreate));
@@ -79,6 +81,8 @@ namespace CountyServicePortal.Controllers
                 return View();
             }
 
+            HttpContext.Session.SetString("username", employee.Username);
+            HttpContext.Session.SetString("userId", employee.EmployeeId.ToString());
             HttpContext.Session.SetString("isCivilian", "false");
             HttpContext.Session.SetString("isLoggedIn", "true");
             HttpContext.Session.SetString("isEmployee", "true");

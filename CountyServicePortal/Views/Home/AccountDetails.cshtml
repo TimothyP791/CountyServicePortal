@@ -1,0 +1,13 @@
+﻿
+@model CountyServicePortal.Models.AccountDetails
+
+<h2>Account Details</h2>
+
+<p>UserID: @Model.UserID</p>
+<p>Username: @Model.Username</p>
+<p>Account Created At: @Model.AccountCreatedAt</p>
+<p>Requests Made: @Model.RequestsMade</p>
+@if (Context.Session.GetString("isEmployee") == "true")
+{
+    <p>Requests Altered: @Model.RequestsAltered</p>
+}

@@ -56,9 +56,11 @@ namespace CountyServicePortal.Controllers
             {
                 request.DateSubmitted = DateTime.Now;
                 request.Status = "Submitted";
+                user.RequestsMade++; // Increment the RequestsMade count for the user
 
                 _context.ServiceRequests.Add(request);
                 _context.SaveChanges();
+                
 
                 return RedirectToAction(nameof(Success));
             }
@@ -94,7 +96,11 @@ namespace CountyServicePortal.Controllers
             }
 
             request.Status = status;
-
+            var employee = _context.Employees.FirstOrDefault(u => u.Username == User.Identity.Name);
+            if (employee != null)
+            {
+                employee.RequestsAltered++; // Increment the RequestsAltered count for the employee
+            }
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Details), new { id });
